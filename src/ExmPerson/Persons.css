@@ -1,0 +1,17 @@
+.red {
+  color: red;
+  font-size: 2rem;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.btn {
+  background: white;
+  font: inherit;
+  padding: 5px;
+  border-radius: 2px;
+  color: black;
+}
