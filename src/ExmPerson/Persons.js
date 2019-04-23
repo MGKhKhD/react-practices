@@ -2,7 +2,6 @@ import React from "react";
 
 import FormControl from "./FormControl";
 import PresonList from "./PersonList";
-import AuthContext from "./AuthContext";
 
 import "./Persons.css";
 
@@ -11,13 +10,12 @@ class Persons extends React.Component {
     super(props);
     this.state = {
       persons: [
-        { id: 1, name: "Person1", age: 10 },
+        { id: 1, name: "Person1", age: 10,},
         { id: 2, name: "Person2", age: 13 },
         { id: 3, name: "Person3", age: 50 }
       ],
       toggle: true,
-      registeredInput: 0,
-      isAuthenticated: false
+      registeredInput: 0
     };
   }
 
@@ -50,27 +48,12 @@ class Persons extends React.Component {
     this.setState({ registeredInput: bool ? personId : 0 });
   };
 
-  handleLogin = () => {
-    this.setState({ isAuthenticated: true });
-  };
-
-  handleLogout = () => {
-    this.setState({ isAuthenticated: false });
-  };
-
   render() {
     const style = {
       background: this.state.toggle ? "green" : "red"
     };
 
     return (
-      <AuthContext.Provider
-        value={{
-          isAuthenticated: this.state.isAuthenticated,
-          login: this.handleLogin,
-          logout: this.handleLogout
-        }}
-      >
         <div>
           <FormControl
             personsLength={this.state.persons.length}
@@ -87,7 +70,6 @@ class Persons extends React.Component {
             />
           )}
         </div>
-      </AuthContext.Provider>
     );
   }
 }

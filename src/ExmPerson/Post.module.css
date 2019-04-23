@@ -1,0 +1,42 @@
+.Post {
+    width: 250px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    margin: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.Title{
+    font-size: 1rem;
+    font-family: 'Courier New';
+    color: black;
+}
+
+.Post:hover,
+.Post:active {
+    background-color: #C0DDF5;
+}
+
+.Author {
+    margin: 16px 0;
+    color: gray;
+    font-size: .8rem;
+    border: 1px solid blue;
+}
+
+.Author:hover {
+    margin: 16px 0;
+    color: gray;
+    font-size: .8rem;
+    border: 1px solid red;
+    background-color: aqua;
+}
+
+.Email {
+    margin: 16px 0;
+    color: gray;
+    font-size: .6rem;
+}

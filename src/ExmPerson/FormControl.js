@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import AuthContext from "./AuthContext";
+
 
 const FormControl = props => {
-  const authed = useContext(AuthContext);
 
   const classes = [];
   if (props.personsLength <= 2) {
@@ -18,13 +17,6 @@ const FormControl = props => {
       <p className={classes.join(" ")}>list of persons</p>
       <button className="btn" style={props.style} onClick={props.toggleList}>
         Toggle List
-      </button>
-      <button
-        className="btn"
-        style={{ margin: "1rem auto", background: "gray", color: "red" }}
-        onClick={authed.isAuthenticated ? authed.logout : authed.login}
-      >
-        {authed.isAuthenticated ? "Logout" : "Login"}
       </button>
     </div>
   );
