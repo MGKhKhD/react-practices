@@ -27,12 +27,14 @@ const Person = props => {
 
   const nameClick = event => {
     setInputName(!inputName ? true : false);
+    //if(inputName) setInputValue('');
     setInputAge(false);
   };
 
   const ageClick = event => {
     setInputName(false);
     setInputAge(!inputAge ? true : false);
+    if(inputAge) setInputValue('');
   };
 
   useEffect(() => {
@@ -45,6 +47,14 @@ const Person = props => {
     }
     registerChange(inputName || inputAge);
   }, [inputName, inputAge, props.allowInputElm]);
+
+  useEffect(()=>{
+    if(inputName) setInputValue('');
+  },[inputName]);
+
+  useEffect(()=>{
+    if(inputAge) setInputValue('');
+  },[inputAge]);
 
   const handleKeyDown = event => {
     if (event.keyCode !== 13) return;
@@ -89,6 +99,7 @@ const Person = props => {
                     inputName ? "enetr new name..." : "enter new age..."
                   }
                   onKeyDown={handleKeyDown.bind(this)}
+                  value={inputValue}
                 />
               )}
             </React.Fragment>
