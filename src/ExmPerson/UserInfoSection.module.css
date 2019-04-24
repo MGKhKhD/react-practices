@@ -1,0 +1,13 @@
+.UserInfoSection {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: auto;
+  width: auto;
+  max-width: 500px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid black;
+  box-shadow: 0 2px 3px #ccc;
+  box-sizing: border-box;
+}

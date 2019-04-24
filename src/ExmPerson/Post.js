@@ -1,40 +1,46 @@
-import React, {useContext, useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useContext, useState, useEffect } from "react";
 
-import AuthContext from './AuthContext';
+import AuthContext from "./AuthContext";
+import DataContext from "./DataContext";
 
-import classes from './Post.module.css'
+import classes from "./Post.module.css";
 
-const Post = (props) => {
-    const auth=useContext(AuthContext);
-    const [modal,setModal] =useState(false);
-    const [user,setUser]=useState(null);
+const Post = props => {
+  const auth = useContext(AuthContext);
+  const data = useContext(DataContext);
+  const [modal, setModal] = useState(false);
+  const [user, setUser] = useState(null);
 
-    const showAuthorInfo = async () =>{
-        try{
-            const user = await axios.get('http://jsonplaceholder.typicode.com/users/'+props.post.userId);
-            if(!user) throw new Error('no user to show');
-            setModal(true);
-            setUser(user.data);
-        }catch(err){
-            console.log(err);
-        }
+  const showAuthorInfo = id => {
+    const postId = data.posts.findIndex(post => post.id === id);
+    const post = data.posts[postId];
+    const userId = data.users.findIndex(u => u.id === post.userId);
+    const user = data.users[userId];
+    setUser(user);
+    setModal(true);
+  };
+
+  useEffect(() => {
+    if (modal && user) {
+      props.showModal("user", user);
     }
+  }, [modal, user]);
 
-    useEffect(()=>{
-        if(modal && user) {
-            //console.log(user);
-            props.showModal('user',user);
-        }
-    }, [modal,user])
-
-    return (<div className={classes.Post}>
-        <p className={classes.Title}>
-           Title: {props.post.title}
-        </p>
-        <p className={classes.Author} onClick={showAuthorInfo}>Author: {props.post.author}</p>
-        {auth.isAuthenticated && <p className={classes.Email}>Email: {props.post.email}</p>}
-        <p>{props.post.body.substring(1,100)}...</p></div>);
+  return (
+    <div className={classes.Post}>
+      <p className={classes.Title}>Title: {props.post.title}</p>
+      <p
+        className={classes.Author}
+        onClick={showAuthorInfo.bind(this, props.post.id)}
+      >
+        Author: {props.post.author}
+      </p>
+      {auth.isAuthenticated && (
+        <p className={classes.Email}>Email: {props.post.email}</p>
+      )}
+      <p>{props.post.body.substring(1, 100)}...</p>
+    </div>
+  );
 };
 
 export default Post;
