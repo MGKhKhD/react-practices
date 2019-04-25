@@ -1,7 +1,29 @@
 .Posts {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+
+.ButtonR {
+  background: white;
+  font: inherit;
+  padding: 5px;
+  border-radius: 2px;
+  color: black;
+  display: flex;
+  float: right;
+  margin-right: 3rem;
+}
+
+.ButtonL {
+  background: white;
+  font: inherit;
+  padding: 5px;
+  border-radius: 2px;
+  color: black;
+  display: flex;
+  float: left;
+  margin-left: 3rem;
 }
