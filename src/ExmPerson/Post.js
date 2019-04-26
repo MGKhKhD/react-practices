@@ -8,31 +8,25 @@ import classes from "./Post.module.css";
 const Post = props => {
   const auth = useContext(AuthContext);
   const data = useContext(DataContext);
-  const [modal, setModal] = useState(false);
   const [user, setUser] = useState(null);
-  const [post, setPost] = useState(null);
 
   const showAuthorInfo = id => {
-    const postId = data.posts.findIndex(post => post.id === id);
-    const post = data.posts[postId];
+    const post = data.posts[id];
     const userId = data.users.findIndex(u => u.id === post.userId);
     const user = data.users[userId];
     setUser(user);
-    setModal(true);
   };
 
-  useEffect(() => {
-    if (modal && user) {
-      props.showModal("user", user);
-    }
-  }, [modal, user]);
+  useEffect(()=>{
+    showAuthorInfo(props.post.id);
+  },[])
+
 
   return (
     <div className={classes.Post}>
       <p className={classes.Title}>Title: {props.post.title}</p>
       <p
         className={classes.Author}
-        onClick={showAuthorInfo.bind(this, props.post.id)}
       >
         Author: {props.post.author}
       </p>

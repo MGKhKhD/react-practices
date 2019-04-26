@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "./Blog.css";
 import Post from "../../components/Post/Post";
-import FullPost from "../../components/FullPost/FullPost";
 
 class Posts extends React.Component {
   constructor(props) {

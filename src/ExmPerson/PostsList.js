@@ -40,28 +40,26 @@ const PostsList = ({ posts }) => {
     list = posts
       .slice(0, 4)
       .map(post => (
-        <Post
-          key={crypto.randomBytes(10).toString("hex")}
+        <NavLink key={crypto.randomBytes(10).toString("hex")} to={{
+          pathname: '/post/' + post.id
+        }}>
+          <Post 
           post={post}
-          showModal={(type, data) => handleModal(type, data)}
         />
+        </NavLink>
       ));
   } else {
     list = state.postsToShow.map(post => (
-      <Post
-        key={crypto.randomBytes(10).toString("hex")}
+      <NavLink key={crypto.randomBytes(10).toString("hex")} to={{
+        pathname: '/post/' + post.id
+      }}>
+        <Post 
         post={post}
-        showModal={(type, data) => handleModal(type, data)}
       />
+      </NavLink>
     ));
   }
 
-  const handleModal = (modalType, modalInfo) => {
-    if (!modalType) return;
-    if (modalType === "user") {
-      console.log(modalType, modalInfo);
-    }
-  };
 
   return (
     <React.Fragment>
