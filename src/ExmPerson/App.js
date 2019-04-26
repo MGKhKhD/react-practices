@@ -20,24 +20,24 @@ const LazyPosts = LazyMount(()=>{
 const App = props => {
   const [auth, setAuth] = useState(false);
 
-  const handleLogin = () => {
-    setAuth(true);
-  };
-
-  const handleLogout = () => {
-    setAuth(false);
-  };
+  const handleLogin = ({email,
+  idToken})=>{
+    console.log(email);
+    auth.email=email;
+    auth.idToken=idToken;
+    auth.isAuthenticated=auth.idToken? true :false;
+  }
 
   return (
     <div style={{ textAlign: "center" }}>
       <AuthContext.Provider
         value={{
-          isAuthenticated: auth,
+          isAuthenticated: auth.isAuthenticated,
           login: handleLogin,
-          logout: handleLogout
+          logout: ()=>{setAuth(false)}
         }}
       >
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <NavigationBar />
           <Switch>
             <Route path="/" exact component={Login} />
