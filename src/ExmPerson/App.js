@@ -5,6 +5,7 @@ import Posts from "./Posts";
 import Login from "./Login";
 import AuthContext from "./AuthContext";
 import NavigationBar from "./NavigationBar";
+import Post from "./Post";
 
 const App = props => {
   const [auth, setAuth] = useState(false);

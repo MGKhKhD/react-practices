@@ -9,14 +9,16 @@ class FullPost extends Component {
     this.state = { loaded: null, errorMessage: null };
   }
 
-  componentDidUpdate() {
-    if (this.props.postId && !this.state.errorMessage) {
+  componentDidMount() {
+    if (this.props.match.params.id && !this.state.errorMessage) {
       if (
         !this.state.loaded ||
-        (this.state.loaded && this.state.loaded.id !== this.props.postId)
+        (this.state.loaded &&
+          this.state.loaded.id !== this.props.match.params.id)
       ) {
         Axios.get(
-          "https://jsonplaceholder.typicode.com/posts/" + this.props.postId
+          "https://jsonplaceholder.typicode.com/posts/" +
+            this.props.match.params.id
         )
           .then(res => {
             return res.data;
@@ -33,7 +35,7 @@ class FullPost extends Component {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
     const { loaded, errorMessage } = this.state;
 
-    if (this.props.postId) {
+    if (this.props.match.params.id) {
       if (errorMessage) {
         post = (
           <p style={{ textAlign: "center", color: "red" }}>{errorMessage} </p>

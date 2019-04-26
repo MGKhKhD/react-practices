@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import crypto from "crypto";
-import DataContext from "./DataContext";
+import { NavLink } from "react-router-dom";
 
 import Post from "./Post";
 import classes from "./Posts.module.css";

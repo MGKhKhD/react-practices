@@ -10,6 +10,7 @@ const Post = props => {
   const data = useContext(DataContext);
   const [modal, setModal] = useState(false);
   const [user, setUser] = useState(null);
+  const [post, setPost] = useState(null);
 
   const showAuthorInfo = id => {
     const postId = data.posts.findIndex(post => post.id === id);
