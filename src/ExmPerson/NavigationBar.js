@@ -1,21 +1,26 @@
-import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import AuthContetx from './AuthContext';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import AuthContetx from "./AuthContext";
+import Logout from "./Logout";
 
-const NavigationBar =()=>{
-    const auth=useContext(AuthContetx);
-    const style={display: 'inline', margin: '2rem', padding: '1rem'};
-    return (<div><ul>
+const NavigationBar = () => {
+  const auth = useContext(AuthContetx);
+  const style = { display: "inline", margin: "2rem", padding: "1rem" };
+  return (
+    <div>
+      <ul>
         <li style={style}>
-            <Link to="/">{auth.isAuthenticated? 'Logout' : 'Login'}</Link>
+          <Link to="/">{auth.isAuthenticated ? <Logout /> : "Login"}</Link>
         </li>
         <li style={style}>
-            <Link to="/persons">Persons</Link>
+          <Link to="/persons">Persons</Link>
         </li>
         <li style={style}>
-            <Link to="/posts">Posts</Link>
+          <Link to="/posts">Posts</Link>
         </li>
-        </ul></div>)
-}
+      </ul>
+    </div>
+  );
+};
 
 export default NavigationBar;
