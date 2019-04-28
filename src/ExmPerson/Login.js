@@ -27,7 +27,6 @@ const Login = props => {
     } else {
       if (email === "" || password === "") return;
       login();
-      if (error === "signup") singUp();
     }
   };
   const login = async () => {
@@ -42,15 +41,16 @@ const Login = props => {
         obj
       );
 
-      if (!res.data) throw new Error("unsuccessful registeration");
       if (res.data.registered) {
         auth.login(res.data.idToken);
+        setError("");
       } else {
         setError("signup");
+        console.log(error);
       }
     } catch (err) {
       console.log(err);
-      setError(err);
+      setError("signup");
     }
   };
 
@@ -66,13 +66,25 @@ const Login = props => {
         obj
       );
 
-      if (!res.data) throw new Error("unsuccessful registeration");
       auth.login(res.data.idToken);
+      setError("");
     } catch (err) {
       console.log(err);
       setError(err);
     }
   };
+
+  useEffect(() => {
+    if (error === "signup") singUp();
+  }, [error]);
+
+  useEffect(() => {
+    return () => {
+      if (error === "") {
+        props.history.replace("/posts");
+      }
+    };
+  }, [error]);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
