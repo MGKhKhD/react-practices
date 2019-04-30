@@ -3,11 +3,21 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 import reducer from "./store/reducer";
+import Counter from "./counter";
+import Display from "./Display";
+import List from "./List";
 
 const store = createStore(reducer);
 
 const Index = props => {
-  return <h1>Scores example</h1>;
+  return (
+    <div>
+      <h1>Scores example</h1>
+      <Counter />
+      <Display />
+      <List />
+    </div>
+  );
 };
 
 const App = () => {
