@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { randomBytes } from "crypto";
 
-import { ADD_TO_LIST } from "./store/actiontypes";
+
+import {addToList} from './store/actions';
 
 const Display = props => {
   return (
@@ -20,9 +20,6 @@ export default connect(
   state => ({ counter: state.counter }),
   dispatch => ({
     onAddToList: counter =>
-      dispatch({
-        type: ADD_TO_LIST,
-        payload: { id: randomBytes(10).toString("hex"), value: counter }
-      })
+      dispatch(addToList(counter))
   })
 )(Display);

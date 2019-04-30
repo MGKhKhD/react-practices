@@ -1,5 +1,5 @@
 import React from "react";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 
 import reducer from "./store/reducer";
@@ -7,7 +7,20 @@ import Counter from "./counter";
 import Display from "./Display";
 import List from "./List";
 
-const store = createStore(reducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const logger = store =>{
+  return next => {
+    return action => {
+      console.log('Logger Middleware, action:',action);
+      const  result = next(action);
+      console.log('Logger Middleware, state', store.getState());
+      return result;
+    }
+  }
+}
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(logger)));
 
 const Index = props => {
   return (

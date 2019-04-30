@@ -2,6 +2,7 @@ import React, { useReducer, useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import * as actionTypes from "./store/actiontypes";
+import * as actions from './store/actions';
 
 const Counter = props => {
   const [input, setInput] = useState(null);
@@ -88,11 +89,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIncrementCounter: () => dispatch({ type: actionTypes.INCREMENT }),
-    onDecrementCounter: () => dispatch({ type: actionTypes.DECREMENT }),
-    onAdd: value => dispatch({ type: actionTypes.ADD, payload: +value }),
+    onIncrementCounter: () => dispatch(actions.increment()),
+    onDecrementCounter: () => dispatch(actions.decrement()),
+    onAdd: value => dispatch(actions.add(+value)),
     onSubtract: value =>
-      dispatch({ type: actionTypes.SUBTRACT, payload: +value })
+      dispatch(actions.subtract(+value))
   };
 };
 

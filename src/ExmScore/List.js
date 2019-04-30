@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import * as actionTypes from "./store/actiontypes";
+import {removeFromList} from './store/actions';
 
 const List = props => {
   return (
@@ -23,6 +23,6 @@ export default connect(
   }),
   dispatch => ({
     onRemoveItem: id =>
-      dispatch({ type: actionTypes.REMOVE_FROM_LiST, payload: id })
+      dispatch(removeFromList(id))
   })
 )(List);
