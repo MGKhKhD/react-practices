@@ -2,6 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { deleteTodo, toggleTodo } from "../store/actions";
 
+import TodoItemTodo from "../components/TodoItemTodo";
+import TodoItemDelete from "../components/TodoItemDelete";
+import TodoItemManageCategory from "../components/TodoItemManageCategory";
+
 const TodoItem = props => {
   const handleToggle = () => {
     if (props.todo.deleted) return;
@@ -15,31 +19,14 @@ const TodoItem = props => {
 
   return (
     <li>
-      <p
-        onClick={handleToggle}
-        style={{
-          color: !props.todo.active ? "green" : "red",
-          textDecoration: "underline"
-        }}
-      >
-        {props.todo.todo}
-      </p>
+      <TodoItemTodo todo={props.todo} handleToggle={handleToggle} />
       <p>
-        <span
-          style={{ color: "red", fontSize: ".7rem" }}
-          onClick={() => {
-            props.deleteTodo(props.todo.id);
-          }}
-        >
-          delete
-        </span>
+        <TodoItemDelete id={props.todo.id} deleteTodo={props.deleteTodo} />
         {"  "}
-        <span
-          style={{ color: "blue", fontSize: ".7rem" }}
-          onClick={handleCategory}
-        >
-          {props.todo.categoryId === 0 ? "Add" : "Change"} Category
-        </span>
+        <TodoItemManageCategory
+          categoryId={props.todo.categoryId}
+          handleCategory={handleCategory}
+        />
       </p>
     </li>
   );
