@@ -1,9 +1,9 @@
 import React from "react";
 
-import AddCategory from '../contaiers/AddCategory';
+import AddCategory from "../contaiers/AddCategory";
 
 const TodoItemManageCategory = props => {
-  if(!props.category){
+  if (!props.category) {
     return (
       <span
         style={{ color: "blue", fontSize: ".7rem" }}
@@ -12,10 +12,12 @@ const TodoItemManageCategory = props => {
         {props.categoryId === 0 ? "Add" : "Change"} Category
       </span>
     );
-  }
-
-  if(props.category && props.categoryId === 0){
-    return <AddCategory removeAddCategory={props.removeAddCategory} id={props.id} />
+  } else if (props.category && props.categoryId === 0) {
+    return (
+      <AddCategory removeAddCategory={props.removeAddCategory} id={props.id} />
+    );
+  } else {
+    return <p>select new category</p>;
   }
 };
 

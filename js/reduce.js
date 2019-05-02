@@ -74,11 +74,15 @@
 //   return acc;
 // },[]))
 
-
 const double = x => x + x;
 const triple = x => x * 3;
 const quadrople = x => x * 4;
 
-const pipe = (...funcs) => inintVal => funcs.reduce((acc,fn)=> fn(acc),inintVal)
-const mul = pipe(double, triple, quadrople)
-console.log(mul(2))
+const pipe = (...funcs) => inintVal =>
+  funcs.reduce((acc, fn) => fn(acc), inintVal);
+const mul = pipe(
+  double,
+  triple,
+  quadrople
+);
+console.log(mul(2));
