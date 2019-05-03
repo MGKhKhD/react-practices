@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import TodoItem from "./TodoItem";
 import Message from "./Message";
+import Category from "./Category"
 
 import { getTodosForCategory } from "../store/reducer";
 
@@ -35,7 +36,7 @@ const TodoList = props => {
     if (list && list.length > 0) {
       return (
         <React.Fragment>
-          <p>{props.category}</p>
+          <Category category={props.category} />
           <ul>{list}</ul>
         </React.Fragment>
       );
@@ -48,6 +49,6 @@ const TodoList = props => {
 };
 
 export default connect((state, ownProps) => ({
-  todos: getTodosForCategory(state, ownProps.categoryId),
+  todos: getTodosForCategory(state, ownProps.category.id),
   message: state.message
 }))(TodoList);

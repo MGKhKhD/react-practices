@@ -1,11 +1,11 @@
 import React from "react";
 
-const TodoItemDelete = props => {
+const ItemDelete = props => {
   return (
     <span
       style={{ color: "red", fontSize: ".7rem" }}
       onClick={() => {
-        props.deleteTodo(props.id);
+        props.deleteItem(props.id);
       }}
     >
       delete
@@ -13,4 +13,4 @@ const TodoItemDelete = props => {
   );
 };
 
-export default TodoItemDelete;
+export default ItemDelete;

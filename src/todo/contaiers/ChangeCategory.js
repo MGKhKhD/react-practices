@@ -1,23 +1,25 @@
-import React, { setState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import { changeCategory } from "../store/actions";
 
 const ChangeCategory = props => {
-  const options = props.categories.map(category =>
-    category.id !== props.id ? (
-      <option key={category.id} value={category.category}>
+  let options = [];
+  props.categories.forEach(category =>{
+    if(category.id !== props.id){
+      options.push(<option key={category.id} value={category.category}>
         {category.category}
-      </option>
-    ) : null
+      </option>);
+    }
+  }
   );
 
   const handleChange = event => {
-    console.log(event.target.value);
+    console.log(event.target);
     const chosenCategory = props.categories.filter(
       cat => cat.category === event.target.value
     );
-    console.log(chosenCategory[0]);
+    console.log(chosenCategory);
     if (chosenCategory.length === 0) {
       return;
     }

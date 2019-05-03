@@ -4,10 +4,10 @@ import { deleteTodo, toggleTodo, undeleteTodo, modifyTodo } from "../store/actio
 import {visibilityFilter} from '../store/actionTypes';
 
 import TodoItemTodo from "../components/TodoItemTodo";
-import TodoItemDelete from "../components/TodoItemDelete";
+import ItemDelete from "../components/ItemDelete";
 import TodoItemManageCategory from "../components/TodoItemManageCategory";
 import UnDeleteTodoItem from '../components/UnDeleteTodoItem';
-import TodoItemModify from '../components/TodoItemModify';
+import ItemModify from '../components/ItemModify';
 
 const TodoItem = props => {
   const [modify,setModify] =useState(false);
@@ -21,7 +21,6 @@ const TodoItem = props => {
 
   const handleCategory = () => {
     if (props.todo.deleted) return;
-    console.log(props.todo.id);
     setCategory(true);
   };
 
@@ -60,12 +59,12 @@ const TodoItem = props => {
       handleKeyDown={handleKeyDown}
       value={text} />
       {props.filter !== visibilityFilter.SHOW_DELETED && <p>
-        <TodoItemDelete id={props.todo.id} deleteTodo={props.deleteTodo} />
+        <ItemDelete id={props.todo.id} deleteItem={props.deleteTodo} />
         {"  "}
-        <TodoItemModify id={props.todo.id} modifyTodo={handleModifyTodo} />
+        <ItemModify id={props.todo.id} modifyItem={handleModifyTodo} />
         {"   "}
         <TodoItemManageCategory
-        id={props.todo.id}
+          id={props.todo.id}
           categoryId={props.todo.categoryId}
           handleCategory={handleCategory}
           category={category}

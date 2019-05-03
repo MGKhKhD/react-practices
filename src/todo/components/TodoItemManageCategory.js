@@ -10,10 +10,10 @@ const TodoItemManageCategory = props => {
         style={{ color: "blue", fontSize: ".7rem" }}
         onClick={props.handleCategory}
       >
-        {props.categoryId === 0 ? "Add" : "Change"} Category
+        {props.categoryId === "0"  ? "Add" : "Change"} Category
       </span>
     );
-  } else if (props.category && props.categoryId === 0) {
+  } else if (props.category && props.categoryId === "0") {
     return (
       <AddCategory removeAddCategory={props.removeAddCategory} id={props.id} />
     );

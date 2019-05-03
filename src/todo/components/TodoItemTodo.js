@@ -1,14 +1,17 @@
 import React from "react";
 
+import InputItem from './InputItem';
+
 const TodoItemTodo = props => 
 
-
   
-    props.modify? (<input type="text" value={props.value? props.value : props.todo.todo}
-    onChange={e => props.handleChangeInput(e.target.value)}
-    onKeyDown={e=>{if(e.keyCode === 13){
-      props.handleKeyDown()
-    }}} />) : (<p
+    props.modify? 
+    (
+    <InputItem  value={props.value? props.value : props.todo.todo} 
+      handleChangeInput={value=>props.handleChangeInput(value)}
+      handleKeyDown={props.handleKeyDown}/>
+      ) : (
+      <p
       onClick={props.handleToggle}
       style={{
         color: !props.todo.active ? "green" : "red",

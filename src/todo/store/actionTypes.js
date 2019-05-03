@@ -8,6 +8,10 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const CHANGE_CATEGORY = "CHANGE_CATEGORY";
+export const MODIFY_CATEGORY = "MODIFY_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const CHANGE_CATEGORY_NAME = "CHANGE_CATEGORY_NAME";
+
 
 export const visibilityFilter = {
   SHOW_ALL: "SHOW_ALL",

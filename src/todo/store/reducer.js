@@ -4,7 +4,7 @@ const initState = {
   visibilityFilter: actionTypes.visibilityFilter.SHOW_ALL,
   message: null,
   todosIDs: [],
-  categories: [{ id: 0, category: "Undecided" }]
+  categories: [{ id: "0", category: "Undecided" }]
 };
 
 const reducer = (state = initState, action) => {
@@ -80,12 +80,27 @@ const reducer = (state = initState, action) => {
         }
       };
     }
+    case actionTypes.CHANGE_CATEGORY_NAME:{
+      const cat = [...state.categories];
+      const found = cat.filter(item => item.id === action.payload.id);
+
+      return {
+        ...state, categories: [...state.categories.filter(cat=> cat.id !== action.payload.id), 
+          {...found[0], category: action.payload.category }]
+      }
+    }
+    case actionTypes.DELETE_CATEGORY:{
+      return {
+        ...state, categories: state.categories.filter(cat=> cat.id !== action.payload.id)
+      }
+    }
     default:
       return state;
   }
 };
 
 export const getTodosLength = state => state.todosIDs.length;
+export const getCategoriesLength= state => state.categories.length;
 
 export const getTodosForCategory = (state, categoryId) => {
   if (state.visibilityFilter === actionTypes.visibilityFilter.SHOW_ALL) {

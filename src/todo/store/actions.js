@@ -15,6 +15,7 @@ export const addTodo = (todo, categoryId) => {
       }, [])
       .filter(item => item.todo === todo);
 
+      //if the todo already exists in the deleted todos
     const deletedTodo = state.todosIDs
       .reduce((acc, id) => {
         if (state[id].deleted) {
@@ -79,12 +80,64 @@ export const modifyTodo = (id, text) => ({
   payload: { id, text }
 });
 
-export const addCategory = (id, category) => ({
-  type: actionTypes.ADD_CATEGORY,
-  payload: { id: randomBytes(12).toString("hex"), todoId: id, category }
-});
+export const addCategory = (id, category) => {
+  return (dispatch, getState)=>{
+    const categories = getState().categories;
+    const existedCategory= categories.filter(cat=>cat.category===category);
+    if(existedCategory.length===0){
+      dispatch({
+        type: actionTypes.ADD_CATEGORY,
+        payload: { id: randomBytes(12).toString("hex"), todoId: id, category }
+      });
+    }else{
+      const categoryId=existedCategory[0].id;
+      dispatch(changeCategory(id,categoryId));
+    }
+  }
+  
+};
 
 export const changeCategory = (id, categoryId) => ({
   type: actionTypes.CHANGE_CATEGORY,
   payload: { todoId: id, categoryId }
 });
+
+export const onDeleteCategory = id =>({
+  type: actionTypes.DELETE_CATEGORY,
+  payload: id
+})
+
+export const deleteCategory = id =>{
+  return (dispatch,getState)=>{
+    const state = getState();
+    const todosIDs = state.todosIDs;
+      todosIDs.forEach(todoId =>{
+        if(state[todoId].categoryId === id){
+          dispatch(changeCategory(todoId,"0"));
+        }
+      });
+      dispatch(onDeleteCategory(id));
+  }
+}
+
+export const modifyCategory =(category, id)=>{
+  return (dispatch, getState)=>{
+    const categories = getState().categories;
+    const existedCategory= categories.filter(cat=>(cat.category===category && cat.id !== id));
+    if(existedCategory.length === 0){
+      dispatch({
+        type: actionTypes.CHANGE_CATEGORY_NAME,
+        payload: { id, category }
+      });
+    }else{
+      const state = getState();
+      const todosIDs = state.todosIDs;
+      todosIDs.forEach(todoId =>{
+        if(state[todoId].categoryId === id){
+          dispatch(changeCategory(todoId,existedCategory[0].id));
+        }
+      });
+      dispatch(onDeleteCategory(id));
+    }
+  }
+}

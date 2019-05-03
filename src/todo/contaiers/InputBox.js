@@ -35,6 +35,6 @@ const InputBox = props => {
 export default connect(
   null,
   dispatch => ({
-    addTodo: todo => dispatch(addTodo(todo, 0))
+    addTodo: todo => dispatch(addTodo(todo, "0"))
   })
 )(InputBox);

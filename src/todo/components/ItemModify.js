@@ -1,14 +1,14 @@
 import React from 'react';
 
-const TodoItemModify = (props) => {
+const ItemModify = (props) => {
     return (<span
         style={{ color: "red", fontSize: ".7rem" }}
         onClick={
-          props.modifyTodo
+          props.modifyItem
         }
       >
         modify
       </span>);
 };
 
-export default TodoItemModify;
+export default ItemModify;

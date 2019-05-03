@@ -13,8 +13,7 @@ const CategoryList = props => {
         {props.categories.map(category => (
           <TodoList
             key={category.id}
-            categoryId={category.id}
-            category={category.category}
+            category={category}
           />
         ))}
       </ul>
