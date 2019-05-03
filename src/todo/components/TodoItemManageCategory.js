@@ -18,7 +18,7 @@ const TodoItemManageCategory = props => {
       <AddCategory removeAddCategory={props.removeAddCategory} id={props.id} />
     );
   } else {
-    return <ChangeCategory id={props.categoryId} />;
+    return <ChangeCategory id={props.categoryId} todoId={props.id} />;
   }
 };
 

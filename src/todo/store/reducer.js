@@ -71,6 +71,15 @@ const reducer = (state = initState, action) => {
         }
       };
     }
+    case actionTypes.CHANGE_CATEGORY: {
+      return {
+        ...state,
+        [action.payload.todoId]: {
+          ...state[action.payload.todoId],
+          categoryId: action.payload.categoryId
+        }
+      };
+    }
     default:
       return state;
   }
