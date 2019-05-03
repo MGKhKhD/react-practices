@@ -1,6 +1,7 @@
 import React from "react";
 
 import AddCategory from "../contaiers/AddCategory";
+import ChangeCategory from "../contaiers/ChangeCategory";
 
 const TodoItemManageCategory = props => {
   if (!props.category) {
@@ -17,7 +18,7 @@ const TodoItemManageCategory = props => {
       <AddCategory removeAddCategory={props.removeAddCategory} id={props.id} />
     );
   } else {
-    return <p>select new category</p>;
+    return <ChangeCategory id={props.categoryId} />;
   }
 };
 
