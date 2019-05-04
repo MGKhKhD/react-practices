@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import InputItem from './InputItem';
+import InputContext from '../inputContext';
 
-const TodoItemTodo = props => 
-
+const TodoItemTodo = props => {
+  const activeInput = useContext(InputContext);
   
-    props.modify? 
+   return (activeInput.inputId.id === props.todo.id && activeInput.inputId.where === 'caption') ? 
     (
     <InputItem  value={props.value? props.value : props.todo.todo} 
       handleChangeInput={value=>props.handleChangeInput(value)}
@@ -20,7 +21,7 @@ const TodoItemTodo = props =>
     >
       {props.todo.todo}
     </p>);
-  
-;
+}
+
 
 export default TodoItemTodo;

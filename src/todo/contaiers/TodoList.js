@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import TodoItem from "./TodoItem";
@@ -8,17 +8,6 @@ import Category from "./Category"
 import { getTodosForCategory } from "../store/reducer";
 
 const TodoList = props => {
-  const [modifyId, setModifyId] = useState(null);
-
-  const handleModifyRegister = id => {
-    if (!id) {
-      setModifyId(null);
-    } else {
-      if (!modifyId) {
-        setModifyId(id);
-      }
-    }
-  };
 
   let list;
   if (props.todos.length !== 0) {
@@ -26,8 +15,6 @@ const TodoList = props => {
       <TodoItem
         key={todo.id}
         todo={todo}
-        registerModify={id => handleModifyRegister(id)}
-        modifyId={modifyId}
       />
     ));
   }

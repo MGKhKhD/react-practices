@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { changeCategory } from "../store/actions";
 
 const ChangeCategory = props => {
+
   let options = [];
   props.categories.forEach(category =>{
     if(category.id !== props.id){

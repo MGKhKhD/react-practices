@@ -104,44 +104,33 @@ export const getCategoriesLength= state => state.categories.length;
 
 export const getTodosForCategory = (state, categoryId) => {
   if (state.visibilityFilter === actionTypes.visibilityFilter.SHOW_ALL) {
-    return state.todosIDs.reduce((acc, id) => {
-      if (!state[id].deleted && state[id].categoryId === categoryId) {
-        return [...acc, state[id]];
-      } else {
-        return [...acc];
-      }
-    }, []);
+    return state.todosIDs.reduce((acc, id) => 
+    updateArray(!state[id].deleted && state[id].categoryId === categoryId, acc, state[id]), []);
   }
 
   if (state.visibilityFilter === actionTypes.visibilityFilter.SHOW_COMPLETED) {
-    return state.todosIDs.reduce((acc, id) => {
-      if (!state[id].active && state[id].categoryId === categoryId) {
-        return [...acc, state[id]];
-      } else {
-        return [...acc];
-      }
-    }, []);
+    return state.todosIDs.reduce((acc, id) => 
+    updateArray(!state[id].active && state[id].categoryId === categoryId, acc, state[id]), []);
   }
 
   if (state.visibilityFilter === actionTypes.visibilityFilter.SHOW_ACTIVE) {
-    return state.todosIDs.reduce((acc, id) => {
-      if (state[id].active && state[id].categoryId === categoryId) {
-        return [...acc, state[id]];
-      } else {
-        return [...acc];
-      }
-    }, []);
+    return state.todosIDs.reduce((acc, id) => 
+    updateArray(state[id].active && state[id].categoryId === categoryId, acc, state[id]), []);
   }
 
   if (state.visibilityFilter === actionTypes.visibilityFilter.SHOW_DELETED) {
-    return state.todosIDs.reduce((acc, id) => {
-      if (state[id].deleted && state[id].categoryId === categoryId) {
-        return [...acc, state[id]];
-      } else {
-        return [...acc];
-      }
-    }, []);
+    return state.todosIDs.reduce((acc, id) => 
+    updateArray(state[id].deleted && state[id].categoryId === categoryId, acc, state[id])
+    , []);
   }
 };
+
+const updateArray = (condition, arr, value)=>{
+  if (condition) {
+    return [...arr, value];
+  } else {
+    return [...arr];
+  }
+}
 
 export default reducer;

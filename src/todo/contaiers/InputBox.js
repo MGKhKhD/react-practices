@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { connect } from "react-redux";
 
 
 import { addTodo } from "../store/actions";
+import InputContext from '../inputContext';
 
 const InputBox = props => {
   const [input, setInput] = useState("");
+  const activeInput = useContext(InputContext);
 
   const handleChange = event => {
+    if(activeInput.inputId.id !== '-1'){
+activeInput.removeInputId();
+    }
     setInput(event.target.value);
   };
 
