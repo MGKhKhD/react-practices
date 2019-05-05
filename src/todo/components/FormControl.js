@@ -1,13 +1,13 @@
 import React from "react";
 
 import InputBox from "../contaiers/InputBox";
-import Filter from '../contaiers/Filter'
+import Filter from "../contaiers/Filter";
 
 const Formcontrol = props => {
   return (
     <div>
       <InputBox />
-      <Filter />
+      {!props.todosLength === 0 && <Filter />}
     </div>
   );
 };
