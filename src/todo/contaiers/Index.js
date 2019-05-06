@@ -8,6 +8,8 @@ import InputContext from "../inputContext";
 
 import { getTodosLength } from "../store/reducer";
 
+import classes from "./Index.module.css";
+
 const Index = props => {
   const [init, setInit] = useState(!props.todosLength === 0);
   const [input, setInput] = useState({ id: "-1", where: "" });
@@ -26,7 +28,7 @@ const Index = props => {
     <InputContext.Provider
       value={{ inputId: input, setInputId, removeInputId }}
     >
-      <div>
+      <div className={classes.Container}>
         <FormControl todosLength={props.todosLength} />
         <CategoryList />
       </div>

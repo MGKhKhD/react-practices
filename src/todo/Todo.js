@@ -10,7 +10,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
-const App = () => {
+const Todo = () => {
   return (
     <Provider store={store}>
       <Index />
@@ -18,4 +18,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Todo;
